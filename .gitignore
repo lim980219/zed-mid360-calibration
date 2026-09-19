@@ -1,0 +1,35 @@
+# Python / development
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.uv-cache/
+.coverage
+htmlcov/
+.vscode/
+.idea/
+
+# ROS / build / generated outputs
+build/
+devel/
+install/
+logs/
+ros_logs/
+dist/
+results/
+calibration_results/
+*.bag
+*.bag.active
+*.pcd
+*.npz
+*.zip
+
+# Local settings / private exported reference material
+.env
+.env.*
+*_ExportBlock-*/
+*ExportBlock*/
+*.local.yaml
+

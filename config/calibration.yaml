@@ -1,0 +1,55 @@
+# LiDAR frame: +X forward, +Y left, +Z up. Units: metres/degrees.
+# REQUIRED: fill all three distances using your own measured mounting position.
+camera_mount:
+  forward_m: null
+  left_m: null
+  down_m: null
+  pitch_down_deg: 10.0
+  yaw_left_deg: 0.0
+  roll_deg: 0.0
+
+topics:
+  image: /zed2/zed_node/left/image_rect_color
+  camera_info: /zed2/zed_node/left/camera_info
+  points: /livox/lidar
+
+data:
+  image_is_rectified: true
+  accumulation_seconds: 5.0
+  max_sync_seconds: 0.10
+  # t_image_corrected = image header stamp + offset
+  camera_time_offset_seconds: 0.0
+  voxel_size_m: 0.02
+  min_range_m: 0.5
+  max_range_m: 40.0
+  min_points: 1000
+  max_points: 1000000
+  # Reject the bag if optical flow exceeds this value (original image pixels).
+  max_motion_pixels: 2.0
+  min_tracked_features: 30
+
+backend:
+  timeout_seconds: 1800
+  use_rough_calib: true
+  # Uses xvfb-run when DISPLAY is absent. No RViz or user clicks required.
+  headless: true
+  min_correspondences: 30
+
+quality:
+  max_translation_change_m: 0.25
+  max_rotation_change_deg: 15.0
+  min_projected_points: 100
+
+# Existing HKU edge extraction parameters, configurable for your scene.
+edge:
+  Canny.gray_threshold: 10
+  Canny.len_threshold: 200
+  Voxel.size: 0.5
+  Voxel.down_sample_size: 0.02
+  Plane.min_points_size: 30
+  Plane.normal_theta_min: 45
+  Plane.normal_theta_max: 135
+  Plane.max_size: 8
+  Ransac.dis_threshold: 0.02
+  Edge.min_dis_threshold: 0.03
+  Edge.max_dis_threshold: 0.06
